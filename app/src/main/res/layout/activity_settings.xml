@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/restGpsTextView"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/reset_gps"
+        app:layout_constraintBottom_toTopOf="@+id/chooseCitytextView"
+        app:layout_constraintStart_toStartOf="@+id/chooseCitytextView" />
+
+    <ImageView
+        android:id="@+id/resetGpsImageView"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="@+id/restGpsTextView"
+        app:layout_constraintStart_toEndOf="@+id/restGpsTextView"
+        app:layout_constraintTop_toTopOf="@+id/restGpsTextView"
+        app:srcCompat="@drawable/gps" />
+
+    <TextView
+        android:id="@+id/chooseCitytextView"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/city_for_weather"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29000002" />
+
+    <Spinner
+        android:id="@+id/chooseCitySpinner"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_weight="1"
+        android:entries="@array/cities"
+        app:layout_constraintBottom_toBottomOf="@+id/chooseCitytextView"
+        app:layout_constraintStart_toEndOf="@+id/chooseCitytextView"
+        app:layout_constraintTop_toTopOf="@+id/chooseCitytextView" />
+
+    <TextView
+        android:id="@+id/slideShowDelayTextView"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/slide_show_delay"
+        app:layout_constraintStart_toStartOf="@+id/chooseCitytextView"
+        app:layout_constraintTop_toBottomOf="@+id/chooseCitytextView" />
+
+    <EditText
+        android:id="@+id/slideShowDelayEditText"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_weight="1"
+        android:imeOptions="actionDone"
+        android:inputType="numberSigned"
+        android:maxLength="2"
+        android:scrollbarSize="3sp"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/slideShowDelayTextView"
+        app:layout_constraintStart_toEndOf="@+id/slideShowDelayTextView"
+        app:layout_constraintTop_toTopOf="@+id/slideShowDelayTextView" />
+
+    <TextView
+        android:id="@+id/updateWeatherDelayTextView"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/update_weather_delay"
+        app:layout_constraintStart_toStartOf="@+id/slideShowDelayTextView"
+        app:layout_constraintTop_toBottomOf="@+id/slideShowDelayTextView" />
+
+    <EditText
+        android:id="@+id/updateWeatherDelayEditText"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_weight="1"
+        android:autofillHints="0"
+        android:imeOptions="actionDone"
+        android:inputType="numberSigned"
+        android:labelFor="@id/updateWeatherDelayTextView"
+        android:maxLength="2"
+        android:scrollbarSize="3sp"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/updateWeatherDelayTextView"
+        app:layout_constraintStart_toEndOf="@+id/updateWeatherDelayTextView"
+        app:layout_constraintTop_toTopOf="@+id/updateWeatherDelayTextView" />
+
+    <TextView
+        android:id="@+id/shufflePhotoTextView"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/shuffle_photo"
+        app:layout_constraintStart_toStartOf="@+id/updateWeatherDelayTextView"
+        app:layout_constraintTop_toBottomOf="@+id/updateWeatherDelayTextView" />
+
+    <CheckBox
+        android:id="@+id/shufflePhotoCheckBox"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/shufflePhotoTextView"
+        app:layout_constraintStart_toEndOf="@+id/shufflePhotoTextView"
+        app:layout_constraintTop_toTopOf="@+id/shufflePhotoTextView" />
+
+    <Button
+        android:id="@+id/saveSettingsbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:backgroundTintMode="add"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:textColorLink="@android:color/holo_green_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
