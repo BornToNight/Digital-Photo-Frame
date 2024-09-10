@@ -21,11 +21,19 @@ import com.google.android.gms.location.LocationServices.getFusedLocationProvider
 import com.google.gson.Gson
 import ru.borntonight.digitalphotoframe.R
 import ru.borntonight.digitalphotoframe.util.AppConstants.CITY_GEOLOCATION_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_PERCENT_BRIGHTNESS_OFF
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_PERCENT_BRIGHTNESS_ON
 import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_SLIDE_SHOW_DELAY
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_TIME_OFF
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_TIME_ON
 import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_UPDATE_WEATHER_DELAY
+import ru.borntonight.digitalphotoframe.util.AppConstants.PERCENT_BRIGHTNESS_OFF_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.PERCENT_BRIGHTNESS_ON_KEY
 import ru.borntonight.digitalphotoframe.util.AppConstants.SHARED_PREF_VALUE
 import ru.borntonight.digitalphotoframe.util.AppConstants.SHUFFLE_PHOTO_KEY
 import ru.borntonight.digitalphotoframe.util.AppConstants.SLIDE_SHOW_DELAY_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.TIME_OFF_SCREEN_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.TIME_ON_SCREEN_KEY
 import ru.borntonight.digitalphotoframe.util.AppConstants.UPDATE_WEATHER_DELAY_KEY
 import ru.borntonight.digitalphotoframe.util.CityGeolocationEnum
 import ru.borntonight.digitalphotoframe.util.GeolocationUtils
@@ -36,6 +44,10 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var chooseCitySpinner: Spinner
     private lateinit var slideShowDelayEditText: EditText
     private lateinit var updateWeatherDelayEditText: EditText
+    private lateinit var updateTimeOffEditText: EditText
+    private lateinit var updateTimeOnEditText: EditText
+    private lateinit var updateBrightnessOffEditText: EditText
+    private lateinit var updateBrightnessOnEditText: EditText
     private lateinit var saveSettingsButton: Button
     private lateinit var shufflePhotoCheckBox: CheckBox
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
@@ -52,6 +64,10 @@ class SettingsActivity : AppCompatActivity() {
         chooseCitySpinner = findViewById(R.id.chooseCitySpinner)
         slideShowDelayEditText = findViewById(R.id.slideShowDelayEditText)
         updateWeatherDelayEditText = findViewById(R.id.updateWeatherDelayEditText)
+        updateTimeOffEditText = findViewById(R.id.updateTimeOffEditText)
+        updateTimeOnEditText = findViewById(R.id.updateTimeOnEditText)
+        updateBrightnessOffEditText = findViewById(R.id.updateBrightnessOffEditText)
+        updateBrightnessOnEditText = findViewById(R.id.updateBrightnessOnEditText)
         saveSettingsButton = findViewById(R.id.saveSettingsbutton)
         shufflePhotoCheckBox = findViewById(R.id.shufflePhotoCheckBox)
 
@@ -69,6 +85,30 @@ class SettingsActivity : AppCompatActivity() {
             (sharedPreferences.getLong(
                 UPDATE_WEATHER_DELAY_KEY, DEFAULT_UPDATE_WEATHER_DELAY
             ) / 60000).toString()
+        )
+
+        updateTimeOffEditText.setText(
+            sharedPreferences.getString(
+                TIME_OFF_SCREEN_KEY, DEFAULT_TIME_OFF
+            )
+        )
+
+        updateTimeOnEditText.setText(
+            sharedPreferences.getString(
+                TIME_ON_SCREEN_KEY, DEFAULT_TIME_ON
+            )
+        )
+
+        updateBrightnessOffEditText.setText(
+            sharedPreferences.getInt(
+                PERCENT_BRIGHTNESS_OFF_KEY, DEFAULT_PERCENT_BRIGHTNESS_OFF
+            ).toString()
+        )
+
+        updateBrightnessOnEditText.setText(
+            sharedPreferences.getInt(
+                PERCENT_BRIGHTNESS_ON_KEY, DEFAULT_PERCENT_BRIGHTNESS_ON
+            ).toString()
         )
 
         resetGpsImageView.setOnClickListener {
@@ -105,6 +145,22 @@ class SettingsActivity : AppCompatActivity() {
             sharedPreferences.edit().putBoolean(
                 SHUFFLE_PHOTO_KEY,
                 shufflePhotoCheckBox.isChecked
+            ).apply()
+            sharedPreferences.edit().putString(
+                TIME_OFF_SCREEN_KEY,
+                updateTimeOffEditText.text.toString()
+            ).apply()
+            sharedPreferences.edit().putString(
+                TIME_ON_SCREEN_KEY,
+                updateTimeOnEditText.text.toString()
+            ).apply()
+            sharedPreferences.edit().putInt(
+                PERCENT_BRIGHTNESS_OFF_KEY,
+                updateBrightnessOffEditText.text.toString().toInt()
+            ).apply()
+            sharedPreferences.edit().putInt(
+                PERCENT_BRIGHTNESS_ON_KEY,
+                updateBrightnessOnEditText.text.toString().toInt()
             ).apply()
             finish()
         }

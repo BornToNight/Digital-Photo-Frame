@@ -12,7 +12,7 @@
         android:id="@+id/restGpsTextView"
         android:layout_width="160dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="@string/reset_gps"
@@ -42,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.37"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29000002" />
+        app:layout_constraintVertical_bias="0.16000003" />
 
     <Spinner
         android:id="@+id/chooseCitySpinner"
@@ -59,7 +59,7 @@
         android:id="@+id/slideShowDelayTextView"
         android:layout_width="160dp"
         android:layout_height="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="@string/slide_show_delay"
@@ -72,6 +72,8 @@
         android:layout_height="36dp"
         android:layout_marginStart="24dp"
         android:layout_weight="1"
+        android:autofillHints="slideShowDelay"
+        android:hint="@string/slide_show_delay_hint"
         android:imeOptions="actionDone"
         android:inputType="numberSigned"
         android:maxLength="2"
@@ -86,7 +88,7 @@
         android:id="@+id/updateWeatherDelayTextView"
         android:layout_width="160dp"
         android:layout_height="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="@string/update_weather_delay"
@@ -99,7 +101,8 @@
         android:layout_height="36dp"
         android:layout_marginStart="24dp"
         android:layout_weight="1"
-        android:autofillHints="0"
+        android:autofillHints="weatherDelay"
+        android:hint="@string/update_weather_delay_hint"
         android:imeOptions="actionDone"
         android:inputType="numberSigned"
         android:labelFor="@id/updateWeatherDelayTextView"
@@ -115,7 +118,7 @@
         android:id="@+id/shufflePhotoTextView"
         android:layout_width="160dp"
         android:layout_height="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="@string/shuffle_photo"
@@ -144,5 +147,125 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/updateTimeOffTextView"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/time_off"
+        app:layout_constraintStart_toStartOf="@+id/shufflePhotoTextView"
+        app:layout_constraintTop_toBottomOf="@+id/shufflePhotoTextView" />
+
+    <EditText
+        android:id="@+id/updateTimeOffEditText"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_weight="1"
+        android:autofillHints="timeOff"
+        android:hint="@string/time_off_hint"
+        android:imeOptions="actionDone"
+        android:inputType="time"
+        android:labelFor="@id/updateTimeOffTextView"
+        android:maxLength="5"
+        android:scrollbarSize="3sp"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/updateTimeOffTextView"
+        app:layout_constraintStart_toEndOf="@+id/updateTimeOffTextView"
+        app:layout_constraintTop_toTopOf="@+id/updateTimeOffTextView" />
+
+    <EditText
+        android:id="@+id/updateBrightnessOffEditText"
+        android:layout_width="78dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="2dp"
+        android:layout_weight="1"
+        android:autofillHints="percentOf"
+        android:hint="@string/percent_brightness_off_hint"
+        android:imeOptions="actionDone"
+        android:inputType="numberSigned"
+        android:labelFor="@id/updateTimeOffTextView"
+        android:maxLength="2"
+        android:scrollbarSize="3sp"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/updateTimeOffEditText"
+        app:layout_constraintStart_toEndOf="@+id/updateTimeOffEditText"
+        app:layout_constraintTop_toTopOf="@+id/updateTimeOffEditText" />
+
+    <TextView
+        android:id="@+id/percentBrightnessOffTextView"
+        android:layout_width="20dp"
+        android:layout_height="36dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/percent"
+        app:layout_constraintBottom_toBottomOf="@+id/updateBrightnessOffEditText"
+        app:layout_constraintStart_toEndOf="@+id/updateBrightnessOffEditText"
+        app:layout_constraintTop_toTopOf="@+id/updateBrightnessOffEditText" />
+
+    <TextView
+        android:id="@+id/updateTimeOnTextView"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/time_on"
+        app:layout_constraintStart_toStartOf="@+id/updateTimeOffTextView"
+        app:layout_constraintTop_toBottomOf="@+id/updateTimeOffTextView" />
+
+    <EditText
+        android:id="@+id/updateTimeOnEditText"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_weight="1"
+        android:autofillHints="timeOn"
+        android:hint="@string/time_on_hint"
+        android:imeOptions="actionDone"
+        android:inputType="time"
+        android:labelFor="@id/updateTimeOnTextView"
+        android:maxLength="5"
+        android:scrollbarSize="3sp"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/updateTimeOnTextView"
+        app:layout_constraintStart_toEndOf="@+id/updateTimeOnTextView"
+        app:layout_constraintTop_toTopOf="@+id/updateTimeOnTextView" />
+
+    <EditText
+        android:id="@+id/updateBrightnessOnEditText"
+        android:layout_width="78dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="2dp"
+        android:layout_weight="1"
+        android:autofillHints="percentOn"
+        android:hint="@string/percent_brightness_on_hint"
+        android:imeOptions="actionDone"
+        android:inputType="numberSigned"
+        android:labelFor="@id/updateTimeOffTextView"
+        android:maxLength="3"
+        android:scrollbarSize="3sp"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/updateTimeOnEditText"
+        app:layout_constraintStart_toEndOf="@+id/updateTimeOnEditText"
+        app:layout_constraintTop_toTopOf="@+id/updateTimeOnEditText" />
+
+    <TextView
+        android:id="@+id/percentBrightnessOnTextView"
+        android:layout_width="20dp"
+        android:layout_height="36dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/percent"
+        app:layout_constraintBottom_toBottomOf="@+id/updateBrightnessOnEditText"
+        app:layout_constraintStart_toEndOf="@+id/updateBrightnessOnEditText"
+        app:layout_constraintTop_toTopOf="@+id/updateBrightnessOnEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

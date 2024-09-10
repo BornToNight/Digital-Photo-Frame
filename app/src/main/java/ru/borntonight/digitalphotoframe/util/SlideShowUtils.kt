@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.provider.DocumentsContract
+import android.provider.Settings
 import android.view.View.GONE
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -24,11 +25,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import ru.borntonight.digitalphotoframe.dto.Geolocation
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_PERCENT_BRIGHTNESS_OFF
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_PERCENT_BRIGHTNESS_ON
 import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_SLIDE_SHOW_DELAY
 import ru.borntonight.digitalphotoframe.util.AppConstants.GEOLOCATION_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.PERCENT_BRIGHTNESS_OFF_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.PERCENT_BRIGHTNESS_ON_KEY
 import ru.borntonight.digitalphotoframe.util.AppConstants.SHARED_PREF_VALUE
 import ru.borntonight.digitalphotoframe.util.AppConstants.SHUFFLE_PHOTO_KEY
 import ru.borntonight.digitalphotoframe.util.AppConstants.SLIDE_SHOW_DELAY_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.TIME_OFF_SCREEN_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.TIME_ON_SCREEN_KEY
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -37,6 +44,43 @@ class SlideShowUtils {
     var currentIndex = 0
     private var slideShowDelay = 0L
     private val handler = Handler(Looper.getMainLooper())
+
+    public fun updateBrightness(context: Activity) {
+        val sharedPreferences =
+            context.getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE)
+        if (sharedPreferences.getString(
+                TIME_OFF_SCREEN_KEY,
+                "DON'T OFF"
+            )?.trim() ?: "DON'T OFF" == DateAndTimeUtils().getTime()
+        ) {
+            setScreenBrightness(
+                context,
+                sharedPreferences.getInt(
+                    PERCENT_BRIGHTNESS_OFF_KEY,
+                    DEFAULT_PERCENT_BRIGHTNESS_OFF
+                ) / 100F
+            )
+        }
+        if (sharedPreferences.getString(
+                TIME_ON_SCREEN_KEY,
+                "DON'T ON"
+            )?.trim() ?: "DON'T ON" == DateAndTimeUtils().getTime()
+        ) {
+            setScreenBrightness(
+                context,
+                sharedPreferences.getInt(
+                    PERCENT_BRIGHTNESS_ON_KEY,
+                    DEFAULT_PERCENT_BRIGHTNESS_ON
+                ) / 100F
+            )
+        }
+    }
+
+    private fun setScreenBrightness(context: Activity, brightness: Float) {
+        val layoutParams = context.window.attributes
+        layoutParams.screenBrightness = brightness
+        context.window.attributes = layoutParams
+    }
 
     public fun stopSlideshow() {
         handler.removeCallbacksAndMessages(null)

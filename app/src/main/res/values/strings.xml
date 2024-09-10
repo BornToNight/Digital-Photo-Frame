@@ -17,6 +17,15 @@
     <string name="empty_temperature_out">t out: <font color='#FF0000'>00.00 ℃</font></string>
     <string name="Friday">Пятница</string>
     <string name="shuffle_photo">Перемешивать фото</string>
+    <string name="time_off">Время снижения яркости (ЧЧ:MM)</string>
+    <string name="time_on">Время повышения яркости (ЧЧ:MM)</string>
+    <string name="time_off_hint">00:00</string>
+    <string name="time_on_hint">06:00</string>
+    <string name="update_weather_delay_hint">10</string>
+    <string name="slide_show_delay_hint">50</string>
+    <string name="percent_brightness_off_hint">0</string>
+    <string name="percent_brightness_on_hint">80</string>
+    <string name="percent">%</string>
     <string-array name="cities">
         <item>Пермь</item>
         <item>Шерья</item>

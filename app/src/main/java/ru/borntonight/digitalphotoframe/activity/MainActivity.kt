@@ -12,34 +12,34 @@ import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.content.Intent.ACTION_OPEN_DOCUMENT
 import android.content.Intent.ACTION_OPEN_DOCUMENT_TREE
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.Window
 import android.view.WindowInsets
-import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices.getFusedLocationProviderClient
 import com.google.gson.Gson
 import ru.borntonight.digitalphotoframe.R
-import ru.borntonight.digitalphotoframe.dto.Geolocation
 import ru.borntonight.digitalphotoframe.util.AppConstants.CITY_GEOLOCATION_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_PERCENT_BRIGHTNESS_OFF
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_PERCENT_BRIGHTNESS_ON
 import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_SLIDE_SHOW_DELAY
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_TIME_OFF
+import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_TIME_ON
 import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_UPDATE_WEATHER_DELAY
 import ru.borntonight.digitalphotoframe.util.AppConstants.GEOLOCATION_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.PERCENT_BRIGHTNESS_OFF_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.PERCENT_BRIGHTNESS_ON_KEY
 import ru.borntonight.digitalphotoframe.util.AppConstants.SHARED_PREF_VALUE
 import ru.borntonight.digitalphotoframe.util.AppConstants.SHUFFLE_PHOTO_KEY
 import ru.borntonight.digitalphotoframe.util.AppConstants.SLIDE_SHOW_DELAY_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.TIME_OFF_SCREEN_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.TIME_ON_SCREEN_KEY
 import ru.borntonight.digitalphotoframe.util.AppConstants.UPDATE_WEATHER_DELAY_KEY
 import ru.borntonight.digitalphotoframe.util.CityGeolocationEnum
 import ru.borntonight.digitalphotoframe.util.GeolocationUtils
@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         settingUpdateWeatherDelay()
         settingCity()
         settingShufflePhoto()
+        settingBrightness()
     }
 
     private fun checkIsGeolocationExsists() {
@@ -157,6 +158,45 @@ class MainActivity : AppCompatActivity() {
             getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE).edit().putBoolean(
                 SHUFFLE_PHOTO_KEY,
                 true
+            ).apply()
+        }
+    }
+
+    private fun settingBrightness() {
+        if (!getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE).contains(
+                TIME_OFF_SCREEN_KEY
+            )
+        ) {
+            getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE).edit().putString(
+                TIME_OFF_SCREEN_KEY,
+                DEFAULT_TIME_OFF
+            ).apply()
+        }
+        if (!getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE).contains(
+                TIME_ON_SCREEN_KEY
+            )
+        ) {
+            getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE).edit().putString(
+                TIME_ON_SCREEN_KEY,
+                DEFAULT_TIME_ON
+            ).apply()
+        }
+        if (!getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE).contains(
+                PERCENT_BRIGHTNESS_OFF_KEY
+            )
+        ) {
+            getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE).edit().putInt(
+                PERCENT_BRIGHTNESS_OFF_KEY,
+                DEFAULT_PERCENT_BRIGHTNESS_OFF
+            ).apply()
+        }
+        if (!getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE).contains(
+                PERCENT_BRIGHTNESS_ON_KEY
+            )
+        ) {
+            getSharedPreferences(SHARED_PREF_VALUE, Context.MODE_PRIVATE).edit().putInt(
+                PERCENT_BRIGHTNESS_ON_KEY,
+                DEFAULT_PERCENT_BRIGHTNESS_ON
             ).apply()
         }
     }

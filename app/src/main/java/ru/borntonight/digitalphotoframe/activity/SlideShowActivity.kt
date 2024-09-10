@@ -24,6 +24,8 @@ import ru.borntonight.digitalphotoframe.R
 import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_UPDATE_DATE_AND_TIME_DELAY
 import ru.borntonight.digitalphotoframe.util.AppConstants.DEFAULT_UPDATE_WEATHER_DELAY
 import ru.borntonight.digitalphotoframe.util.AppConstants.SHARED_PREF_VALUE
+import ru.borntonight.digitalphotoframe.util.AppConstants.TIME_OFF_SCREEN_KEY
+import ru.borntonight.digitalphotoframe.util.AppConstants.TIME_ON_SCREEN_KEY
 import ru.borntonight.digitalphotoframe.util.AppConstants.UPDATE_WEATHER_DELAY_KEY
 import ru.borntonight.digitalphotoframe.util.DateAndTimeUtils
 import ru.borntonight.digitalphotoframe.util.SlideShowUtils
@@ -63,6 +65,7 @@ class SlideShowActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             updateDateAndTime()
+            SlideShowUtils().updateBrightness(this@SlideShowActivity)
         }
 
         lifecycleScope.launch {
@@ -76,6 +79,7 @@ class SlideShowActivity : AppCompatActivity() {
         handler.postDelayed(object : Runnable {
             override fun run() {
                 updateDateAndTime()
+                SlideShowUtils().updateBrightness(this@SlideShowActivity)
                 handler.postDelayed(this, DEFAULT_UPDATE_DATE_AND_TIME_DELAY)
             }
         }, DEFAULT_UPDATE_DATE_AND_TIME_DELAY)

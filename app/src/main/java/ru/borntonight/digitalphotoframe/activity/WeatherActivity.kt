@@ -80,6 +80,7 @@ class WeatherActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             updateDateAndTime()
+            SlideShowUtils().updateBrightness(this@WeatherActivity)
         }
 
         lifecycleScope.launch {
@@ -93,6 +94,7 @@ class WeatherActivity : AppCompatActivity() {
         handler.postDelayed(object : Runnable {
             override fun run() {
                 updateDateAndTime()
+                SlideShowUtils().updateBrightness(this@WeatherActivity)
                 handler.postDelayed(this, DEFAULT_UPDATE_DATE_AND_TIME_DELAY)
             }
         }, DEFAULT_UPDATE_DATE_AND_TIME_DELAY)

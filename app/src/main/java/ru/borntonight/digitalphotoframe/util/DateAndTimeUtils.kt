@@ -18,4 +18,8 @@ class DateAndTimeUtils {
         return SimpleDateFormat("EEEE", Locale("ru", "RU")).format(System.currentTimeMillis())
             .replaceFirstChar { it.uppercaseChar() }
     }
+
+    public fun getTime(): String {
+        return SimpleDateFormat("HH:mm", Locale.getDefault()).format(System.currentTimeMillis())
+    }
 }
