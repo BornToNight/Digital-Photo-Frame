@@ -3,7 +3,7 @@
 
 Android приложения - цифровая фоторамка с метеостанцией. <br>
 Погода на улицы - из https://openweathermap.org <br>
-Погода внутри - из локального ESP8266 с датчиком DHT-22 по Wi-Fi <br>
+Погода внутри - из локального ESP8266 с датчиком DHT-22 по Wi-Fi ([Код](https://github.com/BornToNight/Digital-Photo-Frame/blob/main/DHT_ESP8266.ino))
 ![0](https://github.com/user-attachments/assets/5d2b4858-6aff-459e-b0fd-447cdca4d46b)
 ![1](https://github.com/user-attachments/assets/eb7d0e0a-1a02-4785-8666-ad7591089afa)
 ![2](https://github.com/user-attachments/assets/ef454686-63ed-479f-a0f1-b08c560f3a70)
